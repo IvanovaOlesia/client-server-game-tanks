@@ -3,6 +3,8 @@
 /Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/server/Server.java
 /Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/gameLogic/PlayerMovementHandler.java
 /Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/server/ClientData.java
+/Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/gameLogic/BulletLogicHandler.java
 /Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/server/ActionHandler.java
 /Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/app/Main.java
 /Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/gameLogic/PlayerActionHandler.java
+/Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/model/Bullet.java

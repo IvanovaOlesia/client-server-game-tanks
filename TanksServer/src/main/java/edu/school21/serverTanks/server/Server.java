@@ -1,15 +1,20 @@
 package edu.school21.serverTanks.server;
 
+import edu.school21.serverTanks.gameLogic.BulletLogicHandler;
 import edu.school21.serverTanks.gameLogic.PlayerActionHandler;
+import edu.school21.serverTanks.model.Bullet;
 import edu.school21.serverTanks.model.GameData;
 
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 
 public class Server {
@@ -21,7 +26,7 @@ public class Server {
 
 
 
-    public void startServer() throws IOException {
+    public void startServer() throws IOException, InterruptedException {
         ServerSocket serverSocket = new ServerSocket(PORT);
         Socket playerOne = serverSocket.accept();
         Socket playerTwo = serverSocket.accept();
@@ -31,7 +36,7 @@ public class Server {
         new Thread(clientHandlerOne).start();
         new Thread(clientHandlerTwo).start();
         while (true) {
-            ClientData event = eventQueue.poll();
+            ClientData event = eventQueue.poll(500, TimeUnit.MILLISECONDS);
             if (event != null) {
                 if (event.getId() == 1) {
                     handlerActionClientOne(event,gameData );
@@ -39,8 +44,42 @@ public class Server {
                 if(event.getId() == 2){
                     handlerActionClientTwo(event,gameData);
                 }
+            }else{
+                handlerActionClientOne(event,gameData );
             }
         }
+    }
+
+    private void handlerActionClientOne(ClientData event,GameData gameData) throws IOException {
+        PlayerActionHandler.handlePlayerAction(event, gameData);
+        clientHandlerOne.sendMessageToPlayer(gameData);
+
+        Collections.reverse(gameData.getPositionPlayersX());
+        invertPlayerPositions(gameData);
+        swapList(gameData);
+        invertBulletPositionEnemy(gameData);
+
+        clientHandlerTwo.sendMessageToPlayer(gameData);
+        Collections.reverse(gameData.getPositionPlayersX());
+        invertPlayerPositions(gameData);
+        swapList(gameData);
+        invertBulletPositionPlayer(gameData);
+
+    }
+
+    private void invertBulletPositionPlayer(GameData gameData) {
+        gameData.getBulletListPlayer().forEach(bullet -> bullet.setY(1025 - bullet.getY() - 11));
+    }
+
+    private void invertBulletPositionEnemy(GameData gameData) {
+        gameData.getBulletListEnemy().forEach(bullet -> bullet.setY(1025 - bullet.getY() - 11));
+    }
+
+    private void swapList(GameData gameData) {
+        List<Bullet> temp = gameData.getBulletListPlayer();
+        gameData.setBulletListPlayer(gameData.getBulletListEnemy());
+        gameData.setBulletListEnemy(temp);
+
     }
 
     private void handlerActionClientTwo(ClientData event, GameData gameData) throws IOException {
@@ -51,19 +90,6 @@ public class Server {
         Collections.reverse(gameData.getPositionPlayersX());
         invertPlayerPositions(gameData);
         clientHandlerOne.sendMessageToPlayer(gameData);
-    }
-
-
-
-    private void handlerActionClientOne(ClientData event,GameData gameData) throws IOException {
-        PlayerActionHandler.handlePlayerAction(event, gameData);
-        clientHandlerOne.sendMessageToPlayer(gameData);
-        Collections.reverse(gameData.getPositionPlayersX());
-        invertPlayerPositions(gameData);
-        clientHandlerTwo.sendMessageToPlayer(gameData);
-        Collections.reverse(gameData.getPositionPlayersX());
-        invertPlayerPositions(gameData);
-
     }
     private void invertPlayerPositions(GameData gameData) {
         gameData.getPositionPlayersX().set(1,  1025.00 - gameData.getPositionPlayersX().get(1) - 81.00 );
