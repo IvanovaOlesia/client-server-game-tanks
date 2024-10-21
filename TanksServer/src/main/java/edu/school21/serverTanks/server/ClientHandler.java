@@ -19,11 +19,12 @@ public class ClientHandler implements Runnable{
     private ActionHandler actionHandler;
     private Integer id;
 
-    public ClientHandler(Socket player, GameData playerData, Integer id) throws IOException {
+    public ClientHandler(Socket player, GameData playerData, Integer id, BlockingQueue<ClientData> eventQueue) throws IOException {
         this.playerBufferedReader = new BufferedReader(new InputStreamReader(player.getInputStream()));
         this.playerBufferedWriter = new BufferedWriter(new OutputStreamWriter(player.getOutputStream()));
         this.playerData = playerData;
         this.queue = new LinkedBlockingQueue<>();
+        this.eventQueue = eventQueue;
         actionHandler = new ActionHandler(playerBufferedReader ,queue);
         this.id = id;
     }

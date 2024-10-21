@@ -1,9 +1,7 @@
-/Users/pallaaxe/Desktop/project/Tanks/TanksClient/src/main/java/edu/school21/clientTanks/controller/Controller.java
-/Users/pallaaxe/Desktop/project/Tanks/TanksClient/src/main/java/edu/school21/clientTanks/view/BulletRenderer.java
-/Users/pallaaxe/Desktop/project/Tanks/TanksClient/src/main/java/edu/school21/clientTanks/view/View.java
-/Users/pallaaxe/Desktop/project/Tanks/TanksClient/src/main/java/edu/school21/clientTanks/controller/WriteThread.java
-/Users/pallaaxe/Desktop/project/Tanks/TanksClient/src/main/java/edu/school21/clientTanks/JSONModel/GameData.java
-/Users/pallaaxe/Desktop/project/Tanks/TanksClient/src/main/java/module-info.java
-/Users/pallaaxe/Desktop/project/Tanks/TanksClient/src/main/java/edu/school21/clientTanks/controller/ReadThread.java
-/Users/pallaaxe/Desktop/project/Tanks/TanksClient/src/main/java/edu/school21/clientTanks/app/Main.java
-/Users/pallaaxe/Desktop/project/Tanks/TanksClient/src/main/java/edu/school21/clientTanks/JSONModel/Bullet.java
+/Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksClient/src/main/java/edu/school21/clientTanks/app/Main.java
+/Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksClient/src/main/java/edu/school21/clientTanks/controller/WriteThread.java
+/Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksClient/src/main/java/edu/school21/clientTanks/view/View.java
+/Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksClient/src/main/java/edu/school21/clientTanks/controller/Controller.java
+/Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksClient/src/main/java/edu/school21/clientTanks/controller/ReadThread.java
+/Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksClient/src/main/java/module-info.java
+/Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksClient/src/main/java/edu/school21/clientTanks/JSONModel/GameData.java
