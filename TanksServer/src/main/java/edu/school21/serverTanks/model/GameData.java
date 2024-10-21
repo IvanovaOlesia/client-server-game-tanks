@@ -6,6 +6,7 @@ import java.util.List;
 
 public class GameData {
     private  List<Double> positionPlayersX ;
+    private  List<Bullet> bulletList;
 
 
     public GameData() {
@@ -18,6 +19,9 @@ public class GameData {
 
     public List<Double> getPositionPlayersX() {
         return positionPlayersX;
+    }
+    public void addBullet(Bullet bullet){
+        bulletList.add(bullet);
     }
 
 

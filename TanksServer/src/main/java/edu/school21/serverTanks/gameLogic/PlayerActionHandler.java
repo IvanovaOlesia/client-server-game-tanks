@@ -11,6 +11,9 @@ public class PlayerActionHandler {
             } else if (action.getAction().equals("RIGHT")) {
                 PlayerMovementHandler.moveRight(playerData);
             }
+            else if (action.getAction().equals("SPACE")) {
+                BulletLogicHandler.spawnBullet(playerData);
+            }
         }
     }
 
