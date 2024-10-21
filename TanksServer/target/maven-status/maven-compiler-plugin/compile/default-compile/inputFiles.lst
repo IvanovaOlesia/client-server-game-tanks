@@ -1,0 +1,13 @@
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/gameLogic/CollisionHandler.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/gameLogic/PlayerActionHandler.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/gameLogic/BulletLogicHandler.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/model/Bullet.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/model/GameData.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/app/Main.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/server/ClientHandler.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/config/SocketApplicationConfig.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/gameLogic/ShootingImpactChecker.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/server/ActionHandler.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/gameLogic/PlayerMovementHandler.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/server/Server.java
+/Users/pallaaxe/Desktop/project/Tanks/TanksServer/src/main/java/edu/school21/serverTanks/server/Pair.java

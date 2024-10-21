@@ -1,0 +1,2 @@
+JAVA_VERSION="22.0.2"
+MODULES="java.base java.datatransfer java.xml java.prefs java.desktop javafx.base jdk.unsupported javafx.graphics javafx.controls com.dlsc.formsfx com.google.gson java.compiler java.scripting javafx.fxml edu.school21.clientTanks"
