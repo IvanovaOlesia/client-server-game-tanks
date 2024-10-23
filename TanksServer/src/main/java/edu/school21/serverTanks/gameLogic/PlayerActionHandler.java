@@ -15,7 +15,8 @@ public class PlayerActionHandler {
                 BulletLogicHandler.spawnBullet(playerData);
             }
         }else{
-            BulletLogicHandler.moveBullet(playerData);
+            BulletLogicHandler.moveBulletPlayer(playerData);
+            BulletLogicHandler.moveBulletEnemy(playerData);
         }
     }
 

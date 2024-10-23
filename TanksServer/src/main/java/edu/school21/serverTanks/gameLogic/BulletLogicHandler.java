@@ -8,12 +8,14 @@ public class BulletLogicHandler {
         Bullet bullet = new Bullet(playerData.getPositionPlayersX().get(0) + 38, 864);
         playerData.addBulletPlayer(bullet);
     }
-    public static void  moveBullet(GameData playerData){
+    public static void  moveBulletPlayer(GameData playerData){
         playerData.getBulletListPlayer().forEach(bullet -> {
             bullet.setY(bullet.getY() - 10.00);
-            System.out.println(bullet.getY());
         });
-
-
+    }
+    public static void  moveBulletEnemy(GameData playerData){
+        playerData.getBulletListEnemy().forEach(bullet -> {
+            bullet.setY(bullet.getY() + 10.00);
+        });
     }
 }

@@ -38,62 +38,71 @@ public class Server {
         while (true) {
             ClientData event = eventQueue.poll(500, TimeUnit.MILLISECONDS);
             if (event != null) {
+                if(event.getId() == 2){
+                    reverseDataForEnemy(gameData);
+                }
+            }
+            PlayerActionHandler.handlePlayerAction(event, gameData);
+            if (event != null) {
                 if (event.getId() == 1) {
-                    handlerActionClientOne(event,gameData );
+                    sendGameDataToClientOne(gameData);
                 }
                 if(event.getId() == 2){
-                    handlerActionClientTwo(event,gameData);
+                    sendGameDataToClientTwo(gameData);
                 }
             }else{
-                handlerActionClientOne(event,gameData );
+                sendGameDataToClientOne(gameData);
             }
         }
     }
 
-    private void handlerActionClientOne(ClientData event,GameData gameData) throws IOException {
-        PlayerActionHandler.handlePlayerAction(event, gameData);
-        clientHandlerOne.sendMessageToPlayer(gameData);
-
-        Collections.reverse(gameData.getPositionPlayersX());
-        invertPlayerPositions(gameData);
-        swapList(gameData);
-        invertBulletPositionEnemy(gameData);
-
+    private void sendGameDataToClientTwo(GameData gameData) throws IOException {
         clientHandlerTwo.sendMessageToPlayer(gameData);
+        reverseDataForPlayer(gameData);
+        clientHandlerOne.sendMessageToPlayer(gameData);
+    }
+
+    private void sendGameDataToClientOne(GameData gameData) throws IOException {
+        clientHandlerOne.sendMessageToPlayer(gameData);
+        reverseDataForPlayer(gameData);
+        if (!gameData.getBulletListPlayer().isEmpty()) {
+            System.out.println("client2 " + gameData.getBulletListPlayer().get(0).getY());
+        }
+        clientHandlerTwo.sendMessageToPlayer(gameData);
+        reverseDataForEnemy(gameData);
+
+    }
+
+    private void reverseDataForEnemy(GameData gameData) {
         Collections.reverse(gameData.getPositionPlayersX());
         invertPlayerPositions(gameData);
         swapList(gameData);
         invertBulletPositionPlayer(gameData);
-
     }
-
+    private void reverseDataForPlayer(GameData gameData) {
+        Collections.reverse(gameData.getPositionPlayersX());
+        invertPlayerPositions(gameData);
+        swapList(gameData);
+        invertBulletPositionEnemy(gameData);
+    }
+    private void invertPlayerPositions(GameData gameData) {
+        gameData.getPositionPlayersX().set(1,  1025.00 - gameData.getPositionPlayersX().get(1) - 81.00 );
+        gameData.getPositionPlayersX().set(0,  1025.00 - gameData.getPositionPlayersX().get(0) - 81.00 );
+    }
     private void invertBulletPositionPlayer(GameData gameData) {
         gameData.getBulletListPlayer().forEach(bullet -> bullet.setY(1025 - bullet.getY() - 11));
-    }
-
-    private void invertBulletPositionEnemy(GameData gameData) {
         gameData.getBulletListEnemy().forEach(bullet -> bullet.setY(1025 - bullet.getY() - 11));
     }
 
+    private void invertBulletPositionEnemy(GameData gameData) {
+        gameData.getBulletListPlayer().forEach(bullet -> bullet.setY(1025 - bullet.getY() - 11));
+        gameData.getBulletListEnemy().forEach(bullet -> bullet.setY(1025 - bullet.getY() - 11));
+    }
     private void swapList(GameData gameData) {
         List<Bullet> temp = gameData.getBulletListPlayer();
         gameData.setBulletListPlayer(gameData.getBulletListEnemy());
         gameData.setBulletListEnemy(temp);
 
-    }
-
-    private void handlerActionClientTwo(ClientData event, GameData gameData) throws IOException {
-        Collections.reverse(gameData.getPositionPlayersX());
-        invertPlayerPositions(gameData);
-        PlayerActionHandler.handlePlayerAction(event, gameData);
-        clientHandlerTwo.sendMessageToPlayer(gameData);
-        Collections.reverse(gameData.getPositionPlayersX());
-        invertPlayerPositions(gameData);
-        clientHandlerOne.sendMessageToPlayer(gameData);
-    }
-    private void invertPlayerPositions(GameData gameData) {
-        gameData.getPositionPlayersX().set(1,  1025.00 - gameData.getPositionPlayersX().get(1) - 81.00 );
-        gameData.getPositionPlayersX().set(0,  1025.00 - gameData.getPositionPlayersX().get(0) - 81.00 );
     }
 
 }
