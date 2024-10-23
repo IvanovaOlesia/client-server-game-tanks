@@ -7,6 +7,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -22,7 +23,7 @@ public class View {
     private ImageView enemy;
     @FXML
     private AnchorPane field;
-    private Scene scene;
+
     private  String resourcePathToBulletDown = getClass().getResource("/bulletDown.png").toExternalForm();
     private  String getResourcePathToBulletUp = getClass().getResource("/bulletUp.png").toExternalForm();
     private List<ImageView> bulletViewsUp;
@@ -30,14 +31,11 @@ public class View {
 
 
     public View() {
-
-    }
-
-    public View(Scene scene) {
-        this.scene = scene;
         bulletViewsUp = new ArrayList<>();
         bulletViewsDown = new ArrayList<>();
     }
+
+
 
 //    @FXML
 //    public void initialize() {
@@ -51,33 +49,32 @@ public class View {
 
    public void moveBullet(GameData playerData){
 
-//        for ( Bullet bullet: playerData.getBulletListPlayer()){
-//            Image imageBulletUp = new Image(getResourcePathToBulletUp);
-//            ImageView imageViewBulletUp = new ImageView(imageBulletUp);
-//            imageViewBulletUp.setLayoutX(bullet.getX());
-//            imageViewBulletUp.setLayoutY(bullet.getY());
-//            bulletViewsUp.add(imageViewBulletUp);
-//            field.getChildren().add(imageViewBulletUp);
-//
-////            field.getChildren().remove(imageViewBulletUp);
-//
-//        }
-//        for (Bullet bullet: playerData.getBulletListEnemy()){
-//            Image imageBulletUp = new Image(resourcePathToBulletDown);
-//            ImageView imageViewBulletDown = new ImageView(imageBulletUp);
-//            imageViewBulletDown.setLayoutX(bullet.getX());
-//            imageViewBulletDown.setLayoutY(bullet.getY());
-//            bulletViewsDown.add(imageViewBulletDown);
-//            field.getChildren().add(imageViewBulletDown);
-//
-////            field.getChildren().remove(imageViewBulletDown);
-//        }
-//        deleteBullet();
+        for ( Bullet bullet: playerData.getBulletListPlayer()){
+            Image imageBulletUp = new Image(getResourcePathToBulletUp);
+            ImageView imageViewBulletUp = new ImageView(imageBulletUp);
+            imageViewBulletUp.setLayoutX(bullet.getX());
+            imageViewBulletUp.setLayoutY(bullet.getY());
+            bulletViewsUp.add(imageViewBulletUp);
+            field.getChildren().add(imageViewBulletUp);
+
+//            field.getChildren().remove(imageViewBulletUp);
+
+        }
+        for (Bullet bullet: playerData.getBulletListEnemy()){
+            Image imageBulletUp = new Image(resourcePathToBulletDown);
+            ImageView imageViewBulletDown = new ImageView(imageBulletUp);
+            imageViewBulletDown.setLayoutX(bullet.getX());
+            imageViewBulletDown.setLayoutY(bullet.getY());
+            bulletViewsDown.add(imageViewBulletDown);
+            field.getChildren().add(imageViewBulletDown);
+
+//            field.getChildren().remove(imageViewBulletDown);
+        }
+
     }
 
-//    private void deleteBullet() {
-//
-//    }
+
+
 
     public void moveTank(GameData playerData) {
         player.setLayoutX(playerData.getPositionPlayersX().get(0));

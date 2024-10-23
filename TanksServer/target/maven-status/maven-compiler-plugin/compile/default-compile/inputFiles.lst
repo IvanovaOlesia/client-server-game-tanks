@@ -7,4 +7,5 @@
 /Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/server/ActionHandler.java
 /Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/app/Main.java
 /Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/gameLogic/PlayerActionHandler.java
+/Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/gameLogic/CollisionDetector.java
 /Users/pallaaxe/Desktop/Tanks/client-server-game-tanks/TanksServer/src/main/java/edu/school21/serverTanks/model/Bullet.java

@@ -14,10 +14,10 @@ public class PlayerActionHandler {
             else if (action.getAction().equals("SPACE")) {
                 BulletLogicHandler.spawnBullet(playerData);
             }
-        }else{
+        }
             BulletLogicHandler.moveBulletPlayer(playerData);
             BulletLogicHandler.moveBulletEnemy(playerData);
-        }
+
     }
 
 
