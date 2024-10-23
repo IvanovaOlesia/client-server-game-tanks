@@ -1,5 +1,6 @@
 package edu.school21.clientTanks.controller;
 
+import edu.school21.clientTanks.view.RenderBullet;
 import edu.school21.clientTanks.view.View;
 import edu.school21.clientTanks.JSONModel.GameData;
 
@@ -21,14 +22,16 @@ public class ReadThread implements Runnable{
 
     @Override
     public void run() {
+        new Thread(new RenderBullet(view)).start();
         while (in.hasNext()){
             GameData playerData = new Gson().fromJson(in.nextLine(), GameData.class);
                 Platform.runLater(() -> {
-                    view.moveTank(playerData);
+                    try {
+                        view.renderNewData(playerData);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 });
-
-
-
         }
     }
 }
