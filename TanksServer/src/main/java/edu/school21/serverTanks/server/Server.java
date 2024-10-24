@@ -39,7 +39,7 @@ public class Server {
             ClientData event = eventQueue.poll(500, TimeUnit.MILLISECONDS);
             if (event != null) {
                 if(event.getId() == 2){
-                    reverseDataForEnemy(gameData);
+                    reverseData(gameData);
                 }
             }
             PlayerActionHandler.handlePlayerAction(event, gameData);
@@ -57,47 +57,44 @@ public class Server {
     }
 
     private void sendGameDataToClientTwo(GameData gameData) throws IOException {
+        if (!gameData.getBulletListPlayer().isEmpty()) {
+            System.out.println("client2 player bullet" + gameData.getBulletListPlayer().get(0).getY());
+        }
+        if  (!gameData.getBulletListEnemy().isEmpty()) {
+            System.out.println("client2 enemy bullet" + gameData.getBulletListEnemy().get(0).getY());
+        }
         clientHandlerTwo.sendMessageToPlayer(gameData);
-        reverseDataForPlayer(gameData);
+        reverseData(gameData);
         clientHandlerOne.sendMessageToPlayer(gameData);
     }
 
     private void sendGameDataToClientOne(GameData gameData) throws IOException {
         clientHandlerOne.sendMessageToPlayer(gameData);
-        reverseDataForPlayer(gameData);
-        if (!gameData.getBulletListPlayer().isEmpty()) {
-            System.out.println("client2 " + gameData.getBulletListPlayer().get(0).getY());
-        }
+        reverseData(gameData);
         clientHandlerTwo.sendMessageToPlayer(gameData);
-        reverseDataForEnemy(gameData);
+        reverseData(gameData);
 
     }
 
-    private void reverseDataForEnemy(GameData gameData) {
+    private void reverseData(GameData gameData) {
         Collections.reverse(gameData.getPositionPlayersX());
         invertPlayerPositions(gameData);
         swapList(gameData);
-        invertBulletPositionPlayer(gameData);
+        invertBulletPosition(gameData);
     }
-    private void reverseDataForPlayer(GameData gameData) {
-        Collections.reverse(gameData.getPositionPlayersX());
-        invertPlayerPositions(gameData);
-        swapList(gameData);
-        invertBulletPositionEnemy(gameData);
-    }
+
     private void invertPlayerPositions(GameData gameData) {
         gameData.getPositionPlayersX().set(1,  1025.00 - gameData.getPositionPlayersX().get(1) - 81.00 );
         gameData.getPositionPlayersX().set(0,  1025.00 - gameData.getPositionPlayersX().get(0) - 81.00 );
     }
-    private void invertBulletPositionPlayer(GameData gameData) {
-        gameData.getBulletListPlayer().forEach(bullet -> bullet.setY(1025 - bullet.getY() - 11));
-        gameData.getBulletListEnemy().forEach(bullet -> bullet.setY(1025 - bullet.getY() - 11));
+    private void invertBulletPosition(GameData gameData) {
+        gameData.getBulletListPlayer().forEach(bullet -> bullet.setX(1025.00 - bullet.getX() - 5));
+        gameData.getBulletListPlayer().forEach(bullet -> bullet.setY(1025.00 - bullet.getY() - 11.00));
+        gameData.getBulletListEnemy().forEach(bullet -> bullet.setX(1025.00 - bullet.getX() - 5));
+        gameData.getBulletListEnemy().forEach(bullet -> bullet.setY(1025.00 - bullet.getY() - 11.00));
     }
 
-    private void invertBulletPositionEnemy(GameData gameData) {
-        gameData.getBulletListPlayer().forEach(bullet -> bullet.setY(1025 - bullet.getY() - 11));
-        gameData.getBulletListEnemy().forEach(bullet -> bullet.setY(1025 - bullet.getY() - 11));
-    }
+
     private void swapList(GameData gameData) {
         List<Bullet> temp = gameData.getBulletListPlayer();
         gameData.setBulletListPlayer(gameData.getBulletListEnemy());

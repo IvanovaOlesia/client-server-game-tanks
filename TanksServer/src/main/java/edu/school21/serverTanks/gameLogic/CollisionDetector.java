@@ -26,6 +26,6 @@ public class CollisionDetector {
     public static boolean checkBulletCollisionWithEnemyTank(GameData gameData, Bullet bullet){
         return (bullet.getX() >= gameData.getPositionPlayersX().get(1)) &&
                 (bullet.getX() <= gameData.getPositionPlayersX().get(1) + 81.00) &&
-                (bullet.getY() <= 30);
+                (bullet.getY() <= 145);
     }
 }
