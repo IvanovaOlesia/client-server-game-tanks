@@ -1,0 +1,36 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+*.jsave
+*.jshell
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# NetBeans
+nbproject/
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Maven
+target/
+
+
+# OS X
+.DS_Store
