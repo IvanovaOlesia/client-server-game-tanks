@@ -57,12 +57,6 @@ public class Server {
     }
 
     private void sendGameDataToClientTwo(GameData gameData) throws IOException {
-        if (!gameData.getBulletListPlayer().isEmpty()) {
-            System.out.println("client2 player bullet" + gameData.getBulletListPlayer().get(0).getY());
-        }
-        if  (!gameData.getBulletListEnemy().isEmpty()) {
-            System.out.println("client2 enemy bullet" + gameData.getBulletListEnemy().get(0).getY());
-        }
         clientHandlerTwo.sendMessageToPlayer(gameData);
         reverseData(gameData);
         clientHandlerOne.sendMessageToPlayer(gameData);

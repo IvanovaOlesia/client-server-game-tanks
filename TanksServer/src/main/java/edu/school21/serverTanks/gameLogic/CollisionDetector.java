@@ -4,6 +4,7 @@ import edu.school21.serverTanks.model.Bullet;
 import edu.school21.serverTanks.model.GameData;
 
 public class CollisionDetector {
+    private CollisionDetector() {}
     public static boolean checkTankBoundaryLeft(GameData gameData){
         return (gameData.getPositionPlayersX().get(0) - 10.00 >= 0.00);
     }
