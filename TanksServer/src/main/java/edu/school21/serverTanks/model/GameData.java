@@ -8,14 +8,25 @@ public class GameData {
     private  List<Double> positionPlayersX ;
     private  List<Bullet> bulletListPlayer;
     private  List<Bullet> bulletListEnemy;
+    private boolean deleteBullet;
 
 
     public GameData() {
         this.positionPlayersX = new ArrayList<>(Arrays.asList(472.00,472.00));
         bulletListPlayer = new ArrayList<>();
         bulletListEnemy = new ArrayList<>();
+        deleteBullet = false;
 
     }
+
+    public boolean isDeleteBullet() {
+        return deleteBullet;
+    }
+
+    public void setDeleteBullet(boolean deleteBullet) {
+        this.deleteBullet = deleteBullet;
+    }
+
     public void addPosition(double position, int index){
         positionPlayersX.set(index, position);
     }

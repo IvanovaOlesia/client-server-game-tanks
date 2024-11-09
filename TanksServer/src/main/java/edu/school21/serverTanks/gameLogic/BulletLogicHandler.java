@@ -11,19 +11,24 @@ public class BulletLogicHandler {
     }
 
     public static void moveBulletPlayer(GameData gameData) {
-        gameData.getBulletListPlayer().forEach(bullet -> {
-            if(CollisionDetector.checkBulletBoundaryUp(bullet) && !CollisionDetector.checkBulletCollisionWithEnemyTank(gameData, bullet)) {
-                    bullet.setY(bullet.getY() - 20.00);
-                }
-
+        gameData.getBulletListPlayer().removeIf(bullet -> {
+            if (CollisionDetector.checkBulletBoundaryUp(bullet) && !CollisionDetector.checkBulletCollisionWithEnemyTank(gameData, bullet)) {
+                bullet.setY(bullet.getY() - 10.00);
+                return false;
+            } else {
+                return true;
+            }
         });
     }
 
     public static void moveBulletEnemy(GameData gameData) {
-        gameData.getBulletListEnemy().forEach(bullet -> {
+        gameData.getBulletListEnemy().removeIf(bullet -> {
             if(CollisionDetector.checkBulletBoundaryDown(bullet) && !CollisionDetector.checkBulletCollisionWithPlayerTank(gameData, bullet)) {
-                    bullet.setY(bullet.getY() + 20.00);
-                }
+                    bullet.setY(bullet.getY() + 10.00);
+                    return false;
+                }else{
+                return true;
+            }
 
         });
     }

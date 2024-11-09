@@ -36,7 +36,7 @@ public class Server {
         new Thread(clientHandlerOne).start();
         new Thread(clientHandlerTwo).start();
         while (true) {
-            ClientData event = eventQueue.poll(500, TimeUnit.MILLISECONDS);
+            ClientData event = eventQueue.poll(100, TimeUnit.MILLISECONDS);
             if (event != null) {
                 if(event.getId() == 2){
                     reverseData(gameData);

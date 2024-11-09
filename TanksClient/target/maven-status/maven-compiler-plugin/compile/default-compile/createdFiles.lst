@@ -4,8 +4,6 @@ edu/school21/clientTanks/controller/Controller.class
 edu/school21/clientTanks/view/RenderBullet.class
 module-info.class
 edu/school21/clientTanks/JSONModel/GameData.class
-edu/school21/clientTanks/view/View$1.class
 edu/school21/clientTanks/view/View.class
 edu/school21/clientTanks/JSONModel/Bullet.class
 edu/school21/clientTanks/controller/ReadThread.class
-edu/school21/clientTanks/view/View$2.class

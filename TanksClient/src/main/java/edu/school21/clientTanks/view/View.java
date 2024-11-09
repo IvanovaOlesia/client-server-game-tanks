@@ -39,11 +39,21 @@ public class View {
 
     public void renderNewData(GameData playerData) throws InterruptedException {
         moveTank(playerData);
-        moveBullet(playerData);
-        clearField();
+//        moveBullet(playerData);
+
     }
 
    public void moveBullet(GameData playerData){
+        if (playerData.isDeleteBullet()){
+           for(var image : bulletViewsUp){
+               field.getChildren().remove(image);
+           }
+           bulletViewsUp.clear();
+            for(var image : bulletViewsDown){
+                field.getChildren().remove(image);
+            }
+            bulletViewsDown.clear();
+        }
 
         for ( Bullet bullet: playerData.getBulletListPlayer()){
             Image imageBulletUp = new Image(getResourcePathToBulletUp);
@@ -52,18 +62,6 @@ public class View {
             imageViewBulletUp.setLayoutY(bullet.getY());
             bulletViewsUp.add(imageViewBulletUp);
             field.getChildren().add(imageViewBulletUp);
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    Platform.runLater(() -> {
-                        field.getChildren().remove(imageViewBulletUp);
-                        bulletViewsUp.remove(imageViewBulletUp);
-                    });
-                    timer.cancel();
-                }
-            }, 200);
-
         }
         for (Bullet bullet: playerData.getBulletListEnemy()){
             Image imageBulletUp = new Image(resourcePathToBulletDown);
@@ -72,18 +70,6 @@ public class View {
             imageViewBulletDown.setLayoutY(bullet.getY());
             bulletViewsDown.add(imageViewBulletDown);
             field.getChildren().add(imageViewBulletDown);
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    Platform.runLater(() -> {
-                        field.getChildren().remove(imageViewBulletDown);
-                        bulletViewsUp.remove(imageViewBulletDown);
-                    });
-                    timer.cancel();
-                }
-            }, 200);
-
         }
 
     }
@@ -95,12 +81,12 @@ public class View {
         player.setLayoutX(playerData.getPositionPlayersX().get(0));
         enemy.setLayoutX(playerData.getPositionPlayersX().get(1));
     }
-public void clearField() {
-  for (var value: bulletViewsUp){
-    field.getChildren().remove(value);
-  }
-  for (var value: bulletViewsDown){
-    field.getChildren().remove(value);
-  }
-}
+//public void clearField() {
+//  for (var value: bulletViewsUp){
+//    field.getChildren().remove(value);
+//  }
+//  for (var value: bulletViewsDown){
+//    field.getChildren().remove(value);
+//  }
+//}
 }

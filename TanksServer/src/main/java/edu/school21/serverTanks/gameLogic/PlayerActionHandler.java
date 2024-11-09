@@ -20,10 +20,13 @@ public class PlayerActionHandler {
         }
         long currentTime = System.currentTimeMillis();
         long elapsedTime = currentTime - lastUpdateTime;
-        if (elapsedTime >= 500) {
+        if (elapsedTime >= 100) {
             BulletLogicHandler.moveBulletPlayer(playerData);
             BulletLogicHandler.moveBulletEnemy(playerData);
             lastUpdateTime = currentTime;
+            playerData.setDeleteBullet(true);
+        }else{
+            playerData.setDeleteBullet(false);
         }
 
     }
