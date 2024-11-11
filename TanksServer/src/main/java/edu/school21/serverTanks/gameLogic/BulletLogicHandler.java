@@ -1,12 +1,13 @@
 package edu.school21.serverTanks.gameLogic;
 
 import edu.school21.serverTanks.model.Bullet;
+import edu.school21.serverTanks.model.GameConstants;
 import edu.school21.serverTanks.model.GameData;
 
 public class BulletLogicHandler {
     private BulletLogicHandler() {}
     public static void spawnBullet(GameData gameData) {
-        Bullet bullet = new Bullet(gameData.getPositionPlayersX().get(0) + 38, 864);
+        Bullet bullet = new Bullet(gameData.getPositionPlayersX().get(0) + 29, GameConstants.PLAYER_Y_POSITION - GameConstants.MUZZLE_LENGTH);
         gameData.addBulletPlayer(bullet);
     }
 

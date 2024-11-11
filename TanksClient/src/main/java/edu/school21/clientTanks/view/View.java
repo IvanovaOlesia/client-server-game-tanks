@@ -71,7 +71,6 @@ public class View {
             bulletViewsDown.add(imageViewBulletDown);
             field.getChildren().add(imageViewBulletDown);
         }
-
     }
 
 
@@ -81,12 +80,5 @@ public class View {
         player.setLayoutX(playerData.getPositionPlayersX().get(0));
         enemy.setLayoutX(playerData.getPositionPlayersX().get(1));
     }
-//public void clearField() {
-//  for (var value: bulletViewsUp){
-//    field.getChildren().remove(value);
-//  }
-//  for (var value: bulletViewsDown){
-//    field.getChildren().remove(value);
-//  }
-//}
+
 }

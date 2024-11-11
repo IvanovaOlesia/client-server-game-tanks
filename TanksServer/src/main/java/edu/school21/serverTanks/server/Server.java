@@ -3,6 +3,7 @@ package edu.school21.serverTanks.server;
 import edu.school21.serverTanks.gameLogic.BulletLogicHandler;
 import edu.school21.serverTanks.gameLogic.PlayerActionHandler;
 import edu.school21.serverTanks.model.Bullet;
+import edu.school21.serverTanks.model.GameConstants;
 import edu.school21.serverTanks.model.GameData;
 
 
@@ -78,14 +79,14 @@ public class Server {
     }
 
     private void invertPlayerPositions(GameData gameData) {
-        gameData.getPositionPlayersX().set(1,  1025.00 - gameData.getPositionPlayersX().get(1) - 81.00 );
-        gameData.getPositionPlayersX().set(0,  1025.00 - gameData.getPositionPlayersX().get(0) - 81.00 );
+        gameData.getPositionPlayersX().set(1,  GameConstants.FIELD_WIDTH + 1.00 - gameData.getPositionPlayersX().get(1) - GameConstants.TANK_WIDTH );
+        gameData.getPositionPlayersX().set(0,  GameConstants.FIELD_WIDTH + 1.00 - gameData.getPositionPlayersX().get(0) - GameConstants.TANK_WIDTH );
     }
     private void invertBulletPosition(GameData gameData) {
-        gameData.getBulletListPlayer().forEach(bullet -> bullet.setX(1025.00 - bullet.getX() - 5));
-        gameData.getBulletListPlayer().forEach(bullet -> bullet.setY(1025.00 - bullet.getY() - 11.00));
-        gameData.getBulletListEnemy().forEach(bullet -> bullet.setX(1025.00 - bullet.getX() - 5));
-        gameData.getBulletListEnemy().forEach(bullet -> bullet.setY(1025.00 - bullet.getY() - 11.00));
+        gameData.getBulletListPlayer().forEach(bullet -> bullet.setX(GameConstants.FIELD_WIDTH + 1.00 - bullet.getX() - 5));
+        gameData.getBulletListPlayer().forEach(bullet -> bullet.setY(GameConstants.FIELD_WIDTH + 1.00 - bullet.getY() - 11.00));
+        gameData.getBulletListEnemy().forEach(bullet -> bullet.setX(GameConstants.FIELD_WIDTH + 1.00 - bullet.getX() - 5));
+        gameData.getBulletListEnemy().forEach(bullet -> bullet.setY(GameConstants.FIELD_WIDTH + 1.00 - bullet.getY() - 11.00));
     }
 
 

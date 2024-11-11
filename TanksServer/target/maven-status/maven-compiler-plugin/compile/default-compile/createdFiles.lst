@@ -7,5 +7,6 @@ edu/school21/serverTanks/server/ActionHandler.class
 edu/school21/serverTanks/server/Server.class
 edu/school21/serverTanks/gameLogic/CollisionDetector.class
 edu/school21/serverTanks/gameLogic/PlayerActionHandler.class
+edu/school21/serverTanks/model/GameConstants.class
 edu/school21/serverTanks/model/Bullet.class
 edu/school21/serverTanks/gameLogic/PlayerMovementHandler.class

@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         URL fxmlUrl = getClass().getResource("/view.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
-        Scene scene = new Scene(fxmlLoader.load(),1024, 1024);
+        Scene scene = new Scene(fxmlLoader.load(),600, 600);
         View view = fxmlLoader.getController();
         Controller client  = new Controller(view, scene);
         client.startClient();

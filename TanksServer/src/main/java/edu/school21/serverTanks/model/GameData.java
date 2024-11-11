@@ -12,12 +12,13 @@ public class GameData {
 
 
     public GameData() {
-        this.positionPlayersX = new ArrayList<>(Arrays.asList(472.00,472.00));
+        this.positionPlayersX = new ArrayList<>(Arrays.asList(270.00, 270.00));
         bulletListPlayer = new ArrayList<>();
         bulletListEnemy = new ArrayList<>();
         deleteBullet = false;
 
     }
+
 
     public boolean isDeleteBullet() {
         return deleteBullet;
