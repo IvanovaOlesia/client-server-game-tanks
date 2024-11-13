@@ -96,6 +96,7 @@ public class Server {
         swapList(gameData);
         invertBulletPosition(gameData);
         invertHp(gameData);
+        gameData.setPlayerWin(!gameData.isPlayerWin());
     }
 
     private void invertHp(GameData gameData) {
@@ -105,14 +106,14 @@ public class Server {
     }
 
     private void invertPlayerPositions(GameData gameData) {
-        gameData.getPositionPlayersX().set(1,  GameConstants.FIELD_WIDTH + 1.00 - gameData.getPositionPlayersX().get(1) - GameConstants.TANK_WIDTH );
-        gameData.getPositionPlayersX().set(0,  GameConstants.FIELD_WIDTH + 1.00 - gameData.getPositionPlayersX().get(0) - GameConstants.TANK_WIDTH );
+        gameData.getPositionPlayersX().set(1,  GameConstants.MAX_X - gameData.getPositionPlayersX().get(1) - GameConstants.TANK_WIDTH );
+        gameData.getPositionPlayersX().set(0,  GameConstants.MAX_X - gameData.getPositionPlayersX().get(0) - GameConstants.TANK_WIDTH );
     }
     private void invertBulletPosition(GameData gameData) {
-        gameData.getBulletListPlayer().forEach(bullet -> bullet.setX(GameConstants.FIELD_WIDTH + 1.00 - bullet.getX() - 5));
-        gameData.getBulletListPlayer().forEach(bullet -> bullet.setY(GameConstants.FIELD_WIDTH + 1.00 - bullet.getY() - 11.00));
-        gameData.getBulletListEnemy().forEach(bullet -> bullet.setX(GameConstants.FIELD_WIDTH + 1.00 - bullet.getX() - 5));
-        gameData.getBulletListEnemy().forEach(bullet -> bullet.setY(GameConstants.FIELD_WIDTH + 1.00 - bullet.getY() - 11.00));
+        gameData.getBulletListPlayer().forEach(bullet -> bullet.setX(GameConstants.MAX_X - bullet.getX() - GameConstants.BULLET_WIDTH));
+        gameData.getBulletListPlayer().forEach(bullet -> bullet.setY(GameConstants.MAX_Y  - bullet.getY() - GameConstants.BULLET_LENGTH));
+        gameData.getBulletListEnemy().forEach(bullet -> bullet.setX(GameConstants.MAX_X - bullet.getX() - GameConstants.BULLET_WIDTH));
+        gameData.getBulletListEnemy().forEach(bullet -> bullet.setY(GameConstants.MAX_Y - bullet.getY() - GameConstants.BULLET_LENGTH));
     }
 
 

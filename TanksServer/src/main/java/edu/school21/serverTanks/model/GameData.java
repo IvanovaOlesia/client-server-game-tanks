@@ -11,8 +11,8 @@ public class GameData {
     private  List<Bullet> bulletListPlayer;
     private  List<Bullet> bulletListEnemy;
     private boolean deleteBullet;
-    private boolean PlayerWin;
-    private boolean EnemyWin;
+    private boolean playerWin;
+    private boolean gameOver;
 
 
     public GameData() {
@@ -22,15 +22,21 @@ public class GameData {
         deleteBullet = false;
         healthEnemy = 1.0;
         healthPlayer = 1.0;
+        playerWin = false;
+        gameOver = false;
 
+    }
+
+    public boolean isPlayerWin() {
+        return playerWin;
     }
 
     public void setPlayerWin(boolean playerWin) {
-        PlayerWin = playerWin;
+        this.playerWin = playerWin;
     }
 
-    public void setEnemyWin(boolean enemyWin) {
-        EnemyWin = enemyWin;
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
 
     public double getHealthEnemy() {

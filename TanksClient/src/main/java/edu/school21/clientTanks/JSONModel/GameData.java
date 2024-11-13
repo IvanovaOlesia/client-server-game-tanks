@@ -12,6 +12,8 @@ public class GameData {
     private  List<Bullet> bulletListPlayer;
     private  List<Bullet> bulletListEnemy;
     private boolean deleteBullet;
+    private boolean playerWin;
+    private boolean gameOver;
 
 
     public GameData() {
@@ -20,6 +22,14 @@ public class GameData {
         bulletListEnemy = new ArrayList<>();
         deleteBullet = false;
 
+    }
+
+    public boolean isPlayerWin() {
+        return playerWin;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
     }
 
     public double getHealthEnemy() {

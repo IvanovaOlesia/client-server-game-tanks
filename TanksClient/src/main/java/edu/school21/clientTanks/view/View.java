@@ -4,16 +4,14 @@ package edu.school21.clientTanks.view;
 import edu.school21.clientTanks.JSONModel.Bullet;
 import edu.school21.clientTanks.JSONModel.GameData;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.application.Platform;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 
 public class View {
@@ -43,10 +41,17 @@ public class View {
 
 
     public void renderNewData(GameData playerData) throws InterruptedException {
+        if(playerData.isGameOver()){
+           if (playerData.isPlayerWin()){
+               field.getChildren().add(new Label("You WIN!"));
+           }else{
+               field.getChildren().add(new Label("You LOSE!"));
+           }
+
+        }
+        moveBullet(playerData);
         updateHealthBar(playerData);
         moveTank(playerData);
-//        moveBullet(playerData);
-
     }
     private void updateHealthBar(GameData playerData) {
         hpEnemy.setProgress(playerData.getHealthEnemy());

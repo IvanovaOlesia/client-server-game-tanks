@@ -18,6 +18,7 @@ public class BulletLogicHandler {
             gameData.setHealthEnemy(gameData.getHealthEnemy() - 0.1);
             if (gameData.getHealthEnemy() <= 0) {
                 gameData.setPlayerWin(true);
+                gameData.setGameOver(true);
             }
             return true;
         }else{
@@ -32,7 +33,8 @@ public class BulletLogicHandler {
         }else if (CollisionDetector.checkBulletCollisionWithPlayerTank(gameData, bullet)){
                 gameData.setHealthPlayer(gameData.getHealthPlayer() - 0.1);
                 if (gameData.getHealthPlayer() <= 0) {
-                    gameData.setEnemyWin(true);
+                    gameData.setPlayerWin(true);
+                    gameData.setGameOver(true);
                 }
             return true;
             }else{
