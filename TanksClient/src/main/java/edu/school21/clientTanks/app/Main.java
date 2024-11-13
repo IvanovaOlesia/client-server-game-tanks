@@ -18,7 +18,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
         Scene scene = new Scene(fxmlLoader.load(),600, 600);
         View view = fxmlLoader.getController();
-        Controller client  = new Controller(view, scene);
+        Controller client  = new Controller(view, scene,stage);
         client.startClient();
         stage.setScene(scene);
         stage.setResizable(false);
