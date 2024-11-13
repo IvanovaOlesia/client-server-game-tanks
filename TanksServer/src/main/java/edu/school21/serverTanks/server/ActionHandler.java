@@ -19,9 +19,11 @@ public class ActionHandler implements Runnable {
                     while (true) {
                        String action = playerBufferedReader.readLine();
                         if (action == null) {
+                            queue.put("exit");
                             break;
+                        }else {
+                            queue.put(action);
                         }
-                        queue.put(action);
                     }
                 } catch (IOException | InterruptedException e) {
                     e.printStackTrace();

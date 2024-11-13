@@ -13,10 +13,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class ClientHandler implements Runnable{
     private GameData playerData;
     private BufferedReader playerBufferedReader;
-    private BufferedWriter playerBufferedWriter;
-    private BlockingQueue<String> queue;
-    private BlockingQueue<ClientData> eventQueue;
-    private ActionHandler actionHandler;
+    private final BufferedWriter playerBufferedWriter;
+    private final BlockingQueue<String> queue;
+    private final BlockingQueue<ClientData> eventQueue;
+    private final ActionHandler actionHandler;
     private Integer id;
 
     public ClientHandler(Socket player, GameData playerData, Integer id, BlockingQueue<ClientData> eventQueue) throws IOException {
@@ -35,8 +35,9 @@ public class ClientHandler implements Runnable{
         try {
             new Thread(actionHandler).start();
             sendMessageToPlayer(playerData);
-            while (true){
-                String action = queue.take();
+            String action = "run";
+            while (!action.equals("exit")){
+                action = queue.take();
                 eventQueue.put(new ClientData(action,id));
             }
         } catch (IOException | InterruptedException e) {

@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameData {
+    private double healthEnemy;
+    private double healthPlayer;
     private  List<Double> positionPlayersX ;
     private  List<Bullet> bulletListPlayer;
     private  List<Bullet> bulletListEnemy;
@@ -18,6 +20,14 @@ public class GameData {
         bulletListEnemy = new ArrayList<>();
         deleteBullet = false;
 
+    }
+
+    public double getHealthEnemy() {
+        return healthEnemy;
+    }
+
+    public double getHealthPlayer() {
+        return healthPlayer;
     }
 
     public boolean isDeleteBullet() {

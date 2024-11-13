@@ -4,6 +4,7 @@ package edu.school21.clientTanks.view;
 import edu.school21.clientTanks.JSONModel.Bullet;
 import edu.school21.clientTanks.JSONModel.GameData;
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -22,6 +23,10 @@ public class View {
     private ImageView enemy;
     @FXML
     private AnchorPane field;
+    @FXML
+    private ProgressBar hpPlayer;
+    @FXML
+    private ProgressBar hpEnemy;
 
     private  String resourcePathToBulletDown = getClass().getResource("/bulletDown.png").toExternalForm();
     private  String getResourcePathToBulletUp = getClass().getResource("/bulletUp.png").toExternalForm();
@@ -38,9 +43,14 @@ public class View {
 
 
     public void renderNewData(GameData playerData) throws InterruptedException {
+        updateHealthBar(playerData);
         moveTank(playerData);
 //        moveBullet(playerData);
 
+    }
+    private void updateHealthBar(GameData playerData) {
+        hpEnemy.setProgress(playerData.getHealthEnemy());
+        hpPlayer.setProgress(playerData.getHealthPlayer());
     }
 
    public void moveBullet(GameData playerData){

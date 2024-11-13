@@ -1,6 +1,5 @@
 package edu.school21.serverTanks.server;
 
-import edu.school21.serverTanks.gameLogic.BulletLogicHandler;
 import edu.school21.serverTanks.gameLogic.PlayerActionHandler;
 import edu.school21.serverTanks.model.Bullet;
 import edu.school21.serverTanks.model.GameConstants;
@@ -10,8 +9,8 @@ import edu.school21.serverTanks.model.GameData;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -23,38 +22,58 @@ public class Server {
     private GameData gameData;
     private ClientHandler clientHandlerOne;
     private ClientHandler clientHandlerTwo;
-    private final BlockingQueue<ClientData> eventQueue  = new LinkedBlockingQueue<>();
 
 
 
     public void startServer() throws IOException, InterruptedException {
         ServerSocket serverSocket = new ServerSocket(PORT);
-        Socket playerOne = serverSocket.accept();
-        Socket playerTwo = serverSocket.accept();
-        gameData = new GameData();
-        clientHandlerOne = new ClientHandler(playerOne, gameData, 1, eventQueue);
-        clientHandlerTwo = new ClientHandler(playerTwo, gameData, 2, eventQueue);
-        new Thread(clientHandlerOne).start();
-        new Thread(clientHandlerTwo).start();
+        List<Socket> clientList = new LinkedList<>();
+        BlockingQueue<ClientData> eventQueue  = new LinkedBlockingQueue<>();
         while (true) {
+            createConnection(serverSocket, clientList, eventQueue);
+            inputDataProcessing(clientList, eventQueue);
+        }
+    }
+
+    private void inputDataProcessing(List<Socket> clientList, BlockingQueue<ClientData> eventQueue) throws InterruptedException, IOException {
+        while (clientList.size() > 1) {
             ClientData event = eventQueue.poll(100, TimeUnit.MILLISECONDS);
-            if (event != null) {
-                if(event.getId() == 2){
+            if (event != null && event.getAction().equals("exit")) {
+                clientList.get(event.getId() - 1).close();
+                clientList.remove(event.getId() - 1);
+            }else {
+                if (event != null && event.getId() == 2) {
                     reverseData(gameData);
                 }
-            }
-            PlayerActionHandler.handlePlayerAction(event, gameData);
-            if (event != null) {
-                if (event.getId() == 1) {
-                    sendGameDataToClientOne(gameData);
-                }
-                if(event.getId() == 2){
-                    sendGameDataToClientTwo(gameData);
-                }
-            }else{
-                sendGameDataToClientOne(gameData);
+                PlayerActionHandler.handlePlayerAction(event, gameData);
+                sendGameData(event);
+
             }
         }
+    }
+
+    private void sendGameData(ClientData event) throws IOException {
+        if (event != null) {
+            if (event.getId() == 1) {
+                sendGameDataToClientOne(gameData);
+            }
+            if (event.getId() == 2) {
+                sendGameDataToClientTwo(gameData);
+            }
+        } else {
+            sendGameDataToClientOne(gameData);
+        }
+    }
+
+    private void createConnection(ServerSocket serverSocket, List<Socket> clientList, BlockingQueue<ClientData> eventQueue) throws IOException {
+        while (clientList.size() < 2) {
+            clientList.add(serverSocket.accept());
+        }
+        gameData = new GameData();
+        clientHandlerOne = new ClientHandler(clientList.get(0), gameData, 1, eventQueue);
+        clientHandlerTwo = new ClientHandler(clientList.get(1), gameData, 2, eventQueue);
+        new Thread(clientHandlerOne).start();
+        new Thread(clientHandlerTwo).start();
     }
 
     private void sendGameDataToClientTwo(GameData gameData) throws IOException {
@@ -76,6 +95,13 @@ public class Server {
         invertPlayerPositions(gameData);
         swapList(gameData);
         invertBulletPosition(gameData);
+        invertHp(gameData);
+    }
+
+    private void invertHp(GameData gameData) {
+        double temp = gameData.getHealthPlayer();
+        gameData.setHealthPlayer(gameData.getHealthEnemy());
+        gameData.setHealthEnemy(temp);
     }
 
     private void invertPlayerPositions(GameData gameData) {
